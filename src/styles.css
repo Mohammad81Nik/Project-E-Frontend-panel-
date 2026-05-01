@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+
+html,
+body,
+#app {
+  max-height: 100dvh;
+}
+
+body {
+  margin: 0;
+}
+
+* {
+  font-family: 'IranYekan', 'Segoe UI', 'Roboto', sans-serif;
+}
