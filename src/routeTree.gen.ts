@@ -22,6 +22,8 @@ import { Route as AuthenticatedCustomersIndexRouteImport } from './routes/_authe
 import { Route as AuthenticatedCategoriesIndexRouteImport } from './routes/_authenticated/categories/index'
 import { Route as AuthenticatedAttributesIndexRouteImport } from './routes/_authenticated/attributes/index'
 import { Route as AuthenticatedAdminsIndexRouteImport } from './routes/_authenticated/admins/index'
+import { Route as AuthenticatedAttributesCreateRouteImport } from './routes/_authenticated/attributes/create'
+import { Route as AuthenticatedAttributesAttributeIdRouteImport } from './routes/_authenticated/attributes/$attributeId'
 import { Route as AuthenticatedAdminsCreateRouteImport } from './routes/_authenticated/admins/create'
 import { Route as AuthenticatedAdminsAdminIdRouteImport } from './routes/_authenticated/admins/$adminId'
 
@@ -95,6 +97,18 @@ const AuthenticatedAdminsIndexRoute =
     path: '/admins/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAttributesCreateRoute =
+  AuthenticatedAttributesCreateRouteImport.update({
+    id: '/attributes/create',
+    path: '/attributes/create',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAttributesAttributeIdRoute =
+  AuthenticatedAttributesAttributeIdRouteImport.update({
+    id: '/attributes/$attributeId',
+    path: '/attributes/$attributeId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminsCreateRoute =
   AuthenticatedAdminsCreateRouteImport.update({
     id: '/admins/create',
@@ -116,6 +130,8 @@ export interface FileRoutesByFullPath {
   '/auth/': typeof AuthIndexRoute
   '/admins/$adminId': typeof AuthenticatedAdminsAdminIdRoute
   '/admins/create': typeof AuthenticatedAdminsCreateRoute
+  '/attributes/$attributeId': typeof AuthenticatedAttributesAttributeIdRoute
+  '/attributes/create': typeof AuthenticatedAttributesCreateRoute
   '/admins/': typeof AuthenticatedAdminsIndexRoute
   '/attributes/': typeof AuthenticatedAttributesIndexRoute
   '/categories/': typeof AuthenticatedCategoriesIndexRoute
@@ -131,6 +147,8 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthIndexRoute
   '/admins/$adminId': typeof AuthenticatedAdminsAdminIdRoute
   '/admins/create': typeof AuthenticatedAdminsCreateRoute
+  '/attributes/$attributeId': typeof AuthenticatedAttributesAttributeIdRoute
+  '/attributes/create': typeof AuthenticatedAttributesCreateRoute
   '/admins': typeof AuthenticatedAdminsIndexRoute
   '/attributes': typeof AuthenticatedAttributesIndexRoute
   '/categories': typeof AuthenticatedCategoriesIndexRoute
@@ -149,6 +167,8 @@ export interface FileRoutesById {
   '/auth/': typeof AuthIndexRoute
   '/_authenticated/admins/$adminId': typeof AuthenticatedAdminsAdminIdRoute
   '/_authenticated/admins/create': typeof AuthenticatedAdminsCreateRoute
+  '/_authenticated/attributes/$attributeId': typeof AuthenticatedAttributesAttributeIdRoute
+  '/_authenticated/attributes/create': typeof AuthenticatedAttributesCreateRoute
   '/_authenticated/admins/': typeof AuthenticatedAdminsIndexRoute
   '/_authenticated/attributes/': typeof AuthenticatedAttributesIndexRoute
   '/_authenticated/categories/': typeof AuthenticatedCategoriesIndexRoute
@@ -167,6 +187,8 @@ export interface FileRouteTypes {
     | '/auth/'
     | '/admins/$adminId'
     | '/admins/create'
+    | '/attributes/$attributeId'
+    | '/attributes/create'
     | '/admins/'
     | '/attributes/'
     | '/categories/'
@@ -182,6 +204,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/admins/$adminId'
     | '/admins/create'
+    | '/attributes/$attributeId'
+    | '/attributes/create'
     | '/admins'
     | '/attributes'
     | '/categories'
@@ -199,6 +223,8 @@ export interface FileRouteTypes {
     | '/auth/'
     | '/_authenticated/admins/$adminId'
     | '/_authenticated/admins/create'
+    | '/_authenticated/attributes/$attributeId'
+    | '/_authenticated/attributes/create'
     | '/_authenticated/admins/'
     | '/_authenticated/attributes/'
     | '/_authenticated/categories/'
@@ -306,6 +332,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminsIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/attributes/create': {
+      id: '/_authenticated/attributes/create'
+      path: '/attributes/create'
+      fullPath: '/attributes/create'
+      preLoaderRoute: typeof AuthenticatedAttributesCreateRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/attributes/$attributeId': {
+      id: '/_authenticated/attributes/$attributeId'
+      path: '/attributes/$attributeId'
+      fullPath: '/attributes/$attributeId'
+      preLoaderRoute: typeof AuthenticatedAttributesAttributeIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admins/create': {
       id: '/_authenticated/admins/create'
       path: '/admins/create'
@@ -327,6 +367,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedAdminsAdminIdRoute: typeof AuthenticatedAdminsAdminIdRoute
   AuthenticatedAdminsCreateRoute: typeof AuthenticatedAdminsCreateRoute
+  AuthenticatedAttributesAttributeIdRoute: typeof AuthenticatedAttributesAttributeIdRoute
+  AuthenticatedAttributesCreateRoute: typeof AuthenticatedAttributesCreateRoute
   AuthenticatedAdminsIndexRoute: typeof AuthenticatedAdminsIndexRoute
   AuthenticatedAttributesIndexRoute: typeof AuthenticatedAttributesIndexRoute
   AuthenticatedCategoriesIndexRoute: typeof AuthenticatedCategoriesIndexRoute
@@ -340,6 +382,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedAdminsAdminIdRoute: AuthenticatedAdminsAdminIdRoute,
   AuthenticatedAdminsCreateRoute: AuthenticatedAdminsCreateRoute,
+  AuthenticatedAttributesAttributeIdRoute:
+    AuthenticatedAttributesAttributeIdRoute,
+  AuthenticatedAttributesCreateRoute: AuthenticatedAttributesCreateRoute,
   AuthenticatedAdminsIndexRoute: AuthenticatedAdminsIndexRoute,
   AuthenticatedAttributesIndexRoute: AuthenticatedAttributesIndexRoute,
   AuthenticatedCategoriesIndexRoute: AuthenticatedCategoriesIndexRoute,
