@@ -6,6 +6,8 @@ import { useSearch } from '@tanstack/react-router'
 import { useCallback, useMemo } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { attributeQueries } from '../../constants/attribute.queries'
+import { useDelete } from '../../hooks/useAttributeQueries'
+import { enqueueSnackbar } from 'notistack'
 
 interface IBulkActionsProps {
   selected: Set<GridRowId>
@@ -18,6 +20,8 @@ export default function AttributeBulkActions({
 }: IBulkActionsProps) {
   const setModal = useModalStore((state) => state.setModal)
 
+  const { mutateAsync } = useDelete()
+
   const queryClient = useQueryClient()
 
   const search = useSearch({ from: '/_authenticated/attributes/' })
@@ -26,19 +30,24 @@ export default function AttributeBulkActions({
 
   const onBulkDelete = useCallback(() => {
     setModal({
-      feature: 'attributes',
+      feature: 'global',
       path: 'delete',
       config: {
         open: true,
         props: {
-          ids: selectedArray,
-          onFinished: () => {
-            queryClient.invalidateQueries(attributeQueries.getAll(search))
-          },
+          text: `آیا از حذف ${selectedArray.length === 1 ? 'مورد' : 'موارد'} انتخاب شده اطمینان دارید؟`,
+          onSubmit: () =>
+            mutateAsync(selectedArray, {
+              onSuccess: (data) => {
+                enqueueSnackbar({ message: data.message, variant: 'success' })
+
+                queryClient.invalidateQueries(attributeQueries.getAll(search))
+              },
+            }),
         },
       },
     })
-  }, [selectedArray])
+  }, [selectedArray, queryClient])
 
   return (
     <BulkActions

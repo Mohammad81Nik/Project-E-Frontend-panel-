@@ -7,6 +7,7 @@ import type {
 import axiosInstance from '#/lib/axios'
 import type { IApiPaginatedResponse, IApiRepsonse } from '#/types/api'
 import type { IAttribute } from '../types'
+import arrayQueryFc from '#/utils/arrayQueryFc'
 
 export const attributeServices = {
   async getAll(searchParams?: SearchParamsDto) {
@@ -64,7 +65,10 @@ export const attributeServices = {
     try {
       const response = await axiosInstance.put<IApiRepsonse<IAttribute>>(
         `/attributes/${id}`,
-        updateAttributeDto,
+        {
+          ...updateAttributeDto,
+          values: updateAttributeDto.values.map((item) => item.value),
+        },
       )
 
       return response.data
@@ -74,10 +78,10 @@ export const attributeServices = {
       throw error
     }
   },
-  async delete(id: string) {
+  async delete(ids: string[]) {
     try {
       const response = await axiosInstance.delete<IApiRepsonse<IAttribute>>(
-        `/attributes/${id}`,
+        `/attributes?${arrayQueryFc('id', ids)}`,
       )
 
       return response.data

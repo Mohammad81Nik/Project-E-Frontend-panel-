@@ -38,7 +38,7 @@ export default function Update() {
         props: {
           text: `آیا از حذف ویژگی ${data.data.name} اطمینان دارید`,
           onSubmit: () => {
-            return mutateAsyncDelete(data.data.id, {
+            return mutateAsyncDelete([data.data.id], {
               onSuccess() {
                 navigate({ to: '/attributes' })
               },
@@ -88,7 +88,7 @@ export default function Update() {
         </Button>
       </div>
 
-      <Formik
+      <Formik<UpdateAttributeDto>
         initialValues={{
           name: data.data.name,
           values: data.data.values.map((val) => ({

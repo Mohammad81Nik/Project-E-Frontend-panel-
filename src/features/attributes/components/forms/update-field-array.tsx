@@ -69,7 +69,7 @@ export default function UpdateAttributeFieldArray({
         props: {
           text: 'آیا از حذف حالت ویژگی اطمینان دارید؟',
           onSubmit: () => {
-            remove(index)
+            return Promise.resolve(remove(index))
           },
         },
       },
