@@ -13,18 +13,16 @@ export default function ToolsCell(
   const navigate = useNavigate({ from: '/admins/' })
 
   return (
-    <>
-      <IconButton
-        color="secondary"
-        onClick={() => {
-          navigate({
-            to: '/admins/$adminId',
-            params: { adminId: props.row.id },
-          })
-        }}
-      >
-        <EditIcon />
-      </IconButton>
-    </>
+    <IconButton
+      color="secondary"
+      onClick={() => {
+        navigate({
+          to: '/admins/$adminId',
+          params: { adminId: props.row.id },
+        })
+      }}
+    >
+      <EditIcon />
+    </IconButton>
   )
 }
