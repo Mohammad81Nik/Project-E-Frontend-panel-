@@ -1,4 +1,5 @@
 import { authQueries } from '#/features/auth/constants/auth.queries'
+import Read from '#/features/categories/components/pages/read'
 import { createAbility } from '#/lib/casl/ability'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
@@ -16,5 +17,5 @@ export const Route = createFileRoute('/_authenticated/categories/')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/_authenticated/categories/"!</div>
+  return <Read />
 }

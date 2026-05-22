@@ -1,3 +1,4 @@
+import type { Nullable } from '#/types/operators'
 import { create } from 'zustand'
 
 interface IFeatureModal<T = Record<string, any>> {
@@ -6,11 +7,30 @@ interface IFeatureModal<T = Record<string, any>> {
 }
 
 interface State {
+  global: {
+    delete: IFeatureModal<{
+      title?: string
+      text: string
+      onSubmit: () => Promise<any>
+    }>
+  }
   admins: {
     delete: IFeatureModal<{
       ids: string[]
       adminName?: string
       onFinished?: () => void
+    }>
+  }
+  attributes: {
+    delete: IFeatureModal<{
+      ids: string[]
+      attributeName?: string
+      onFinished?: () => void
+    }>
+  }
+  categories: {
+    create: IFeatureModal<{
+      parentId: Nullable<string>
     }>
   }
   customers: {
@@ -27,7 +47,22 @@ interface Actions {
 }
 
 const initialState: State = {
+  global: {
+    delete: {
+      open: false,
+    },
+  },
+  categories: {
+    create: {
+      open: false,
+    },
+  },
   admins: {
+    delete: {
+      open: false,
+    },
+  },
+  attributes: {
     delete: {
       open: false,
     },

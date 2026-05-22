@@ -13,6 +13,15 @@ export const theme = createTheme({
   typography: {
     fontFamily: '"IranYekan", "Roboto", "Segoe UI", sans-serif',
   },
+  breakpoints: {
+    values: {
+      xs: 375,
+      sm: 768,
+      md: 1440,
+      lg: 1441,
+      xl: 1442,
+    },
+  },
   components: {
     MuiSnackbar: {
       styleOverrides: {

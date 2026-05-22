@@ -8,6 +8,7 @@ import { useGetMe } from '#/features/auth/hooks/useAuthQueries'
 import isNonEmpty from '#/utils/isNonEmpty'
 import { useAbilityStore } from '#/stores/useAbilityStore'
 import { createAbility } from '#/lib/casl/ability'
+import DeleteModal from '../modals/delete-modal'
 
 export default function AuthenticatedLayout() {
   const [drawerOpen, serDrawerOpen] = useState(false)
@@ -36,7 +37,7 @@ export default function AuthenticatedLayout() {
       <UiDrawer open={drawerOpen} onClose={handleDrawerClose} />
       <Box
         sx={[
-          { paddingTop: '64px', paddingInline: '16px', maxHeight: "100vh" },
+          { paddingTop: '64px', paddingInline: '16px', maxHeight: '100vh' },
           drawerOpen
             ? {
                 width: 'calc(100% - 240px)',
@@ -47,8 +48,12 @@ export default function AuthenticatedLayout() {
         ]}
       >
         {/* <DrawerHeader /> */}
-        <Outlet />
+        <div className="w-full h-[calc(100dvh-64px)] flex flex-col gap-y-4 relative py-2">
+          <Outlet />
+        </div>
       </Box>
+
+      <DeleteModal />
     </Box>
   )
 }
