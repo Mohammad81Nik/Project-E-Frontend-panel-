@@ -36,9 +36,14 @@ export default function DeleteModal() {
       <Typography>{props?.text}</Typography>
 
       <div className="grid grid-cols-2 gap-x-2">
+        <Button variant="outlined" onClick={onClose} disabled={deletePending}>
+          انصراف
+        </Button>
         <Button
           variant="contained"
           color="error"
+          loading={deletePending}
+          disabled={deletePending}
           onClick={() => {
             setDeletePending(true)
             props?.onSubmit().finally(() => {
@@ -48,10 +53,6 @@ export default function DeleteModal() {
           }}
         >
           تایید و حذف
-        </Button>
-
-        <Button variant="outlined" onClick={onClose}>
-          انصراف
         </Button>
       </div>
     </UiModal>
