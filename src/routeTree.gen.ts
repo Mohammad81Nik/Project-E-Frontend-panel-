@@ -23,6 +23,8 @@ import { Route as AuthenticatedCategoriesIndexRouteImport } from './routes/_auth
 import { Route as AuthenticatedBrandsIndexRouteImport } from './routes/_authenticated/brands/index'
 import { Route as AuthenticatedAttributesIndexRouteImport } from './routes/_authenticated/attributes/index'
 import { Route as AuthenticatedAdminsIndexRouteImport } from './routes/_authenticated/admins/index'
+import { Route as AuthenticatedProductsCreateRouteImport } from './routes/_authenticated/products/create'
+import { Route as AuthenticatedProductsProductIdRouteImport } from './routes/_authenticated/products/$productId'
 import { Route as AuthenticatedBrandsCreateRouteImport } from './routes/_authenticated/brands/create'
 import { Route as AuthenticatedBrandsBrandIdRouteImport } from './routes/_authenticated/brands/$brandId'
 import { Route as AuthenticatedAttributesCreateRouteImport } from './routes/_authenticated/attributes/create'
@@ -106,6 +108,18 @@ const AuthenticatedAdminsIndexRoute =
     path: '/admins/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedProductsCreateRoute =
+  AuthenticatedProductsCreateRouteImport.update({
+    id: '/products/create',
+    path: '/products/create',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedProductsProductIdRoute =
+  AuthenticatedProductsProductIdRouteImport.update({
+    id: '/products/$productId',
+    path: '/products/$productId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedBrandsCreateRoute =
   AuthenticatedBrandsCreateRouteImport.update({
     id: '/brands/create',
@@ -155,6 +169,8 @@ export interface FileRoutesByFullPath {
   '/attributes/create': typeof AuthenticatedAttributesCreateRoute
   '/brands/$brandId': typeof AuthenticatedBrandsBrandIdRoute
   '/brands/create': typeof AuthenticatedBrandsCreateRoute
+  '/products/$productId': typeof AuthenticatedProductsProductIdRoute
+  '/products/create': typeof AuthenticatedProductsCreateRoute
   '/admins/': typeof AuthenticatedAdminsIndexRoute
   '/attributes/': typeof AuthenticatedAttributesIndexRoute
   '/brands/': typeof AuthenticatedBrandsIndexRoute
@@ -175,6 +191,8 @@ export interface FileRoutesByTo {
   '/attributes/create': typeof AuthenticatedAttributesCreateRoute
   '/brands/$brandId': typeof AuthenticatedBrandsBrandIdRoute
   '/brands/create': typeof AuthenticatedBrandsCreateRoute
+  '/products/$productId': typeof AuthenticatedProductsProductIdRoute
+  '/products/create': typeof AuthenticatedProductsCreateRoute
   '/admins': typeof AuthenticatedAdminsIndexRoute
   '/attributes': typeof AuthenticatedAttributesIndexRoute
   '/brands': typeof AuthenticatedBrandsIndexRoute
@@ -198,6 +216,8 @@ export interface FileRoutesById {
   '/_authenticated/attributes/create': typeof AuthenticatedAttributesCreateRoute
   '/_authenticated/brands/$brandId': typeof AuthenticatedBrandsBrandIdRoute
   '/_authenticated/brands/create': typeof AuthenticatedBrandsCreateRoute
+  '/_authenticated/products/$productId': typeof AuthenticatedProductsProductIdRoute
+  '/_authenticated/products/create': typeof AuthenticatedProductsCreateRoute
   '/_authenticated/admins/': typeof AuthenticatedAdminsIndexRoute
   '/_authenticated/attributes/': typeof AuthenticatedAttributesIndexRoute
   '/_authenticated/brands/': typeof AuthenticatedBrandsIndexRoute
@@ -221,6 +241,8 @@ export interface FileRouteTypes {
     | '/attributes/create'
     | '/brands/$brandId'
     | '/brands/create'
+    | '/products/$productId'
+    | '/products/create'
     | '/admins/'
     | '/attributes/'
     | '/brands/'
@@ -241,6 +263,8 @@ export interface FileRouteTypes {
     | '/attributes/create'
     | '/brands/$brandId'
     | '/brands/create'
+    | '/products/$productId'
+    | '/products/create'
     | '/admins'
     | '/attributes'
     | '/brands'
@@ -263,6 +287,8 @@ export interface FileRouteTypes {
     | '/_authenticated/attributes/create'
     | '/_authenticated/brands/$brandId'
     | '/_authenticated/brands/create'
+    | '/_authenticated/products/$productId'
+    | '/_authenticated/products/create'
     | '/_authenticated/admins/'
     | '/_authenticated/attributes/'
     | '/_authenticated/brands/'
@@ -378,6 +404,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminsIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/products/create': {
+      id: '/_authenticated/products/create'
+      path: '/products/create'
+      fullPath: '/products/create'
+      preLoaderRoute: typeof AuthenticatedProductsCreateRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/products/$productId': {
+      id: '/_authenticated/products/$productId'
+      path: '/products/$productId'
+      fullPath: '/products/$productId'
+      preLoaderRoute: typeof AuthenticatedProductsProductIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/brands/create': {
       id: '/_authenticated/brands/create'
       path: '/brands/create'
@@ -431,6 +471,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAttributesCreateRoute: typeof AuthenticatedAttributesCreateRoute
   AuthenticatedBrandsBrandIdRoute: typeof AuthenticatedBrandsBrandIdRoute
   AuthenticatedBrandsCreateRoute: typeof AuthenticatedBrandsCreateRoute
+  AuthenticatedProductsProductIdRoute: typeof AuthenticatedProductsProductIdRoute
+  AuthenticatedProductsCreateRoute: typeof AuthenticatedProductsCreateRoute
   AuthenticatedAdminsIndexRoute: typeof AuthenticatedAdminsIndexRoute
   AuthenticatedAttributesIndexRoute: typeof AuthenticatedAttributesIndexRoute
   AuthenticatedBrandsIndexRoute: typeof AuthenticatedBrandsIndexRoute
@@ -450,6 +492,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAttributesCreateRoute: AuthenticatedAttributesCreateRoute,
   AuthenticatedBrandsBrandIdRoute: AuthenticatedBrandsBrandIdRoute,
   AuthenticatedBrandsCreateRoute: AuthenticatedBrandsCreateRoute,
+  AuthenticatedProductsProductIdRoute: AuthenticatedProductsProductIdRoute,
+  AuthenticatedProductsCreateRoute: AuthenticatedProductsCreateRoute,
   AuthenticatedAdminsIndexRoute: AuthenticatedAdminsIndexRoute,
   AuthenticatedAttributesIndexRoute: AuthenticatedAttributesIndexRoute,
   AuthenticatedBrandsIndexRoute: AuthenticatedBrandsIndexRoute,
