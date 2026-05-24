@@ -11,4 +11,5 @@ export const SubjectLabels: Record<SubjectsDto, string> = {
   comments: 'کامنت ها',
   users: 'مشتریان',
   packs: 'پک ها',
+  brands: 'برند ها',
 }

@@ -51,7 +51,9 @@ export default function OtpPage() {
 
   return (
     <>
-      <Typography variant="h5">احراز هویت</Typography>
+      <Typography variant="h4" sx={{
+        marginBottom: "96px"
+      }}>احراز هویت</Typography>
 
       <Typography variant="body1">
         لطف کد ارسال شده به شماره{' '}

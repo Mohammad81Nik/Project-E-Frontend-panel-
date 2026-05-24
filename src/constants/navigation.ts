@@ -1,6 +1,5 @@
 import type { TNavigationList } from '#/types/navigation'
 import RedeemIcon from '@mui/icons-material/Redeem'
-
 import CategoryIcon from '@mui/icons-material/Category'
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import GroupIcon from '@mui/icons-material/Group'
@@ -9,6 +8,7 @@ import EditAttributesIcon from '@mui/icons-material/EditAttributes'
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout'
 import BackpackIcon from '@mui/icons-material/Backpack'
 import AdUnitsIcon from '@mui/icons-material/AdUnits'
+import FlagIcon from '@mui/icons-material/Flag'
 
 const navigationList: TNavigationList = [
   {
@@ -23,6 +23,12 @@ const navigationList: TNavigationList = [
     icon: CategoryIcon,
     href: '/categories',
     subject: 'categories',
+  },
+  {
+    text: 'مدیریت برند ها',
+    icon: FlagIcon,
+    href: '/brands',
+    subject: 'brands',
   },
   {
     text: 'مدیریت محصولات',

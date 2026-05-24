@@ -9,10 +9,10 @@ export default function PhoneForm({
   isSubmitting,
 }: FormikProps<SendOtpDto>) {
   return (
-    <Form className="w-3/4 lg:w-1/2 flex flex-col items-center gap-y-4">
+    <Form className="w-full flex flex-col items-center gap-y-8">
       <TextField
-        label="شماره تماس"
         fullWidth
+        label="شماره تماس"
         value={values.phone}
         onChange={(e) => setFieldValue('phone', e.target.value)}
       />
@@ -23,6 +23,7 @@ export default function PhoneForm({
         type="submit"
         loading={isSubmitting}
         disabled={isSubmitting}
+        size='large'
       >
         ارسال کد
       </Button>

@@ -10,6 +10,7 @@ export const Subjects = {
   USERS: 'users',
   COMMENTS: 'comments',
   BANNERS: 'banners',
+  BRANDS: 'brands',
 } as const
 
 export const Actions = {
