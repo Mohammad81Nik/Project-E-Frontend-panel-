@@ -20,8 +20,11 @@ import { Route as AuthenticatedPacksIndexRouteImport } from './routes/_authentic
 import { Route as AuthenticatedOrdersIndexRouteImport } from './routes/_authenticated/orders/index'
 import { Route as AuthenticatedCustomersIndexRouteImport } from './routes/_authenticated/customers/index'
 import { Route as AuthenticatedCategoriesIndexRouteImport } from './routes/_authenticated/categories/index'
+import { Route as AuthenticatedBrandsIndexRouteImport } from './routes/_authenticated/brands/index'
 import { Route as AuthenticatedAttributesIndexRouteImport } from './routes/_authenticated/attributes/index'
 import { Route as AuthenticatedAdminsIndexRouteImport } from './routes/_authenticated/admins/index'
+import { Route as AuthenticatedBrandsCreateRouteImport } from './routes/_authenticated/brands/create'
+import { Route as AuthenticatedBrandsBrandIdRouteImport } from './routes/_authenticated/brands/$brandId'
 import { Route as AuthenticatedAttributesCreateRouteImport } from './routes/_authenticated/attributes/create'
 import { Route as AuthenticatedAttributesAttributeIdRouteImport } from './routes/_authenticated/attributes/$attributeId'
 import { Route as AuthenticatedAdminsCreateRouteImport } from './routes/_authenticated/admins/create'
@@ -85,6 +88,12 @@ const AuthenticatedCategoriesIndexRoute =
     path: '/categories/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedBrandsIndexRoute =
+  AuthenticatedBrandsIndexRouteImport.update({
+    id: '/brands/',
+    path: '/brands/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAttributesIndexRoute =
   AuthenticatedAttributesIndexRouteImport.update({
     id: '/attributes/',
@@ -95,6 +104,18 @@ const AuthenticatedAdminsIndexRoute =
   AuthenticatedAdminsIndexRouteImport.update({
     id: '/admins/',
     path: '/admins/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBrandsCreateRoute =
+  AuthenticatedBrandsCreateRouteImport.update({
+    id: '/brands/create',
+    path: '/brands/create',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBrandsBrandIdRoute =
+  AuthenticatedBrandsBrandIdRouteImport.update({
+    id: '/brands/$brandId',
+    path: '/brands/$brandId',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedAttributesCreateRoute =
@@ -132,8 +153,11 @@ export interface FileRoutesByFullPath {
   '/admins/create': typeof AuthenticatedAdminsCreateRoute
   '/attributes/$attributeId': typeof AuthenticatedAttributesAttributeIdRoute
   '/attributes/create': typeof AuthenticatedAttributesCreateRoute
+  '/brands/$brandId': typeof AuthenticatedBrandsBrandIdRoute
+  '/brands/create': typeof AuthenticatedBrandsCreateRoute
   '/admins/': typeof AuthenticatedAdminsIndexRoute
   '/attributes/': typeof AuthenticatedAttributesIndexRoute
+  '/brands/': typeof AuthenticatedBrandsIndexRoute
   '/categories/': typeof AuthenticatedCategoriesIndexRoute
   '/customers/': typeof AuthenticatedCustomersIndexRoute
   '/orders/': typeof AuthenticatedOrdersIndexRoute
@@ -149,8 +173,11 @@ export interface FileRoutesByTo {
   '/admins/create': typeof AuthenticatedAdminsCreateRoute
   '/attributes/$attributeId': typeof AuthenticatedAttributesAttributeIdRoute
   '/attributes/create': typeof AuthenticatedAttributesCreateRoute
+  '/brands/$brandId': typeof AuthenticatedBrandsBrandIdRoute
+  '/brands/create': typeof AuthenticatedBrandsCreateRoute
   '/admins': typeof AuthenticatedAdminsIndexRoute
   '/attributes': typeof AuthenticatedAttributesIndexRoute
+  '/brands': typeof AuthenticatedBrandsIndexRoute
   '/categories': typeof AuthenticatedCategoriesIndexRoute
   '/customers': typeof AuthenticatedCustomersIndexRoute
   '/orders': typeof AuthenticatedOrdersIndexRoute
@@ -169,8 +196,11 @@ export interface FileRoutesById {
   '/_authenticated/admins/create': typeof AuthenticatedAdminsCreateRoute
   '/_authenticated/attributes/$attributeId': typeof AuthenticatedAttributesAttributeIdRoute
   '/_authenticated/attributes/create': typeof AuthenticatedAttributesCreateRoute
+  '/_authenticated/brands/$brandId': typeof AuthenticatedBrandsBrandIdRoute
+  '/_authenticated/brands/create': typeof AuthenticatedBrandsCreateRoute
   '/_authenticated/admins/': typeof AuthenticatedAdminsIndexRoute
   '/_authenticated/attributes/': typeof AuthenticatedAttributesIndexRoute
+  '/_authenticated/brands/': typeof AuthenticatedBrandsIndexRoute
   '/_authenticated/categories/': typeof AuthenticatedCategoriesIndexRoute
   '/_authenticated/customers/': typeof AuthenticatedCustomersIndexRoute
   '/_authenticated/orders/': typeof AuthenticatedOrdersIndexRoute
@@ -189,8 +219,11 @@ export interface FileRouteTypes {
     | '/admins/create'
     | '/attributes/$attributeId'
     | '/attributes/create'
+    | '/brands/$brandId'
+    | '/brands/create'
     | '/admins/'
     | '/attributes/'
+    | '/brands/'
     | '/categories/'
     | '/customers/'
     | '/orders/'
@@ -206,8 +239,11 @@ export interface FileRouteTypes {
     | '/admins/create'
     | '/attributes/$attributeId'
     | '/attributes/create'
+    | '/brands/$brandId'
+    | '/brands/create'
     | '/admins'
     | '/attributes'
+    | '/brands'
     | '/categories'
     | '/customers'
     | '/orders'
@@ -225,8 +261,11 @@ export interface FileRouteTypes {
     | '/_authenticated/admins/create'
     | '/_authenticated/attributes/$attributeId'
     | '/_authenticated/attributes/create'
+    | '/_authenticated/brands/$brandId'
+    | '/_authenticated/brands/create'
     | '/_authenticated/admins/'
     | '/_authenticated/attributes/'
+    | '/_authenticated/brands/'
     | '/_authenticated/categories/'
     | '/_authenticated/customers/'
     | '/_authenticated/orders/'
@@ -318,6 +357,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCategoriesIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/brands/': {
+      id: '/_authenticated/brands/'
+      path: '/brands'
+      fullPath: '/brands/'
+      preLoaderRoute: typeof AuthenticatedBrandsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/attributes/': {
       id: '/_authenticated/attributes/'
       path: '/attributes'
@@ -330,6 +376,20 @@ declare module '@tanstack/react-router' {
       path: '/admins'
       fullPath: '/admins/'
       preLoaderRoute: typeof AuthenticatedAdminsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/brands/create': {
+      id: '/_authenticated/brands/create'
+      path: '/brands/create'
+      fullPath: '/brands/create'
+      preLoaderRoute: typeof AuthenticatedBrandsCreateRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/brands/$brandId': {
+      id: '/_authenticated/brands/$brandId'
+      path: '/brands/$brandId'
+      fullPath: '/brands/$brandId'
+      preLoaderRoute: typeof AuthenticatedBrandsBrandIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/attributes/create': {
@@ -369,8 +429,11 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminsCreateRoute: typeof AuthenticatedAdminsCreateRoute
   AuthenticatedAttributesAttributeIdRoute: typeof AuthenticatedAttributesAttributeIdRoute
   AuthenticatedAttributesCreateRoute: typeof AuthenticatedAttributesCreateRoute
+  AuthenticatedBrandsBrandIdRoute: typeof AuthenticatedBrandsBrandIdRoute
+  AuthenticatedBrandsCreateRoute: typeof AuthenticatedBrandsCreateRoute
   AuthenticatedAdminsIndexRoute: typeof AuthenticatedAdminsIndexRoute
   AuthenticatedAttributesIndexRoute: typeof AuthenticatedAttributesIndexRoute
+  AuthenticatedBrandsIndexRoute: typeof AuthenticatedBrandsIndexRoute
   AuthenticatedCategoriesIndexRoute: typeof AuthenticatedCategoriesIndexRoute
   AuthenticatedCustomersIndexRoute: typeof AuthenticatedCustomersIndexRoute
   AuthenticatedOrdersIndexRoute: typeof AuthenticatedOrdersIndexRoute
@@ -385,8 +448,11 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAttributesAttributeIdRoute:
     AuthenticatedAttributesAttributeIdRoute,
   AuthenticatedAttributesCreateRoute: AuthenticatedAttributesCreateRoute,
+  AuthenticatedBrandsBrandIdRoute: AuthenticatedBrandsBrandIdRoute,
+  AuthenticatedBrandsCreateRoute: AuthenticatedBrandsCreateRoute,
   AuthenticatedAdminsIndexRoute: AuthenticatedAdminsIndexRoute,
   AuthenticatedAttributesIndexRoute: AuthenticatedAttributesIndexRoute,
+  AuthenticatedBrandsIndexRoute: AuthenticatedBrandsIndexRoute,
   AuthenticatedCategoriesIndexRoute: AuthenticatedCategoriesIndexRoute,
   AuthenticatedCustomersIndexRoute: AuthenticatedCustomersIndexRoute,
   AuthenticatedOrdersIndexRoute: AuthenticatedOrdersIndexRoute,

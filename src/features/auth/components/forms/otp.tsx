@@ -10,7 +10,7 @@ export default function OtpForm({
   submitForm,
 }: FormikProps<VerifyOtpDto>) {
   return (
-    <Form className="flex flex-col gap-y-4 w-1/2">
+    <Form className="flex flex-col gap-y-4 w-full">
       <UiOtpInput
         value={values.code}
         onChange={(otp) => {
@@ -23,10 +23,12 @@ export default function OtpForm({
       />
 
       <Button
+        sx={{ marginTop: '16px' }}
         variant="contained"
         type="submit"
         disabled={isSubmitting}
         loading={isSubmitting}
+        size='large'
       >
         ورود
       </Button>

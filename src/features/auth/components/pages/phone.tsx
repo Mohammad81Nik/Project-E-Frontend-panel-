@@ -47,7 +47,7 @@ export default function PhonePage() {
 
   return (
     <>
-      <Typography variant="h4">ورود به پنل مدیریتی</Typography>
+      <Typography variant="h4" align='right' sx={{marginBottom: "96px"}}>ورود به پنل مدیریتی</Typography>
 
       <Typography variant="body1">لطفا شماره تماس خود را وارد کنید</Typography>
 

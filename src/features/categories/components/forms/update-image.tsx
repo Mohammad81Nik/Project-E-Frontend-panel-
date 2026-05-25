@@ -10,6 +10,7 @@ import type { ICategory } from '../../types'
 import queryClient from '#/lib/queryClient'
 import { useQueryClient } from '@tanstack/react-query'
 import { categoryQueries } from '../../constants/categoryQueries'
+import IconButton from '@mui/material/IconButton'
 
 interface IUpdateCategoryImageProps {
   id: string
@@ -29,7 +30,6 @@ export default function UpdateCategoryImage({
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
     (e) => {
       const image = e.target.files?.[0]
-
 
       if (isNonEmpty(image)) {
         mutate(
@@ -58,7 +58,7 @@ export default function UpdateCategoryImage({
   )
 
   return (
-    <div className="relative border border-black rounded-md w-[300px] h-[300px] overflow-hidden group">
+    <div className="relative border border-black rounded-md w-[300px] h-[300px] overflow-hidden">
       <img
         src={image}
         alt="category image"
@@ -68,17 +68,18 @@ export default function UpdateCategoryImage({
         variant="contained"
         component="label"
         tabIndex={-1}
-        className="transition-opacity duration-200 ease-in-out group-hover:opacity-100 opacity-0"
         sx={{
           position: 'absolute',
           bottom: '8px',
           right: '8px',
+          backgroundColor: 'white',
         }}
       >
         <AddPhotoAlternateIcon
           sx={{
             width: '40px',
             height: '40px',
+            color: 'black',
           }}
         />
         <VisuallyHiddenInput
