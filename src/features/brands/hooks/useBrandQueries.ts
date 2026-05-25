@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query'
 import { brandQueries } from '../constants/brand.queries'
 import { useParams } from '@tanstack/react-router'
 import type { SearchParamsDto } from '../schemas'
@@ -10,7 +10,7 @@ export function useGetAll(search?: SearchParamsDto) {
 export function useGetOneSuspense() {
   const params = useParams({ from: '/_authenticated/brands/$brandId' })
 
-  return useQuery(brandQueries.getOne(params.brandId))
+  return useSuspenseQuery(brandQueries.getOne(params.brandId))
 }
 
 export function useCreate() {

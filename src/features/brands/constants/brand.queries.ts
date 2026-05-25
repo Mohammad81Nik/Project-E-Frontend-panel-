@@ -26,7 +26,7 @@ export const brandQueries = {
   updateImage: () =>
     mutationOptions({
       mutationKey: ['brand', 'update', 'image'],
-      mutationFn: brandServices.update,
+      mutationFn: brandServices.updateImage,
     }),
   delete: () =>
     mutationOptions({

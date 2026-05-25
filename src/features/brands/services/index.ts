@@ -92,7 +92,7 @@ export const brandServices = {
       formData.append('image', image)
 
       const response = await axiosInstance.post<IApiRepsonse<IBrand>>(
-        '/admin/brands',
+        '/admin/brands/update/image',
         formData,
         {
           headers: {

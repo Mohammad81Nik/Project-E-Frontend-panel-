@@ -6,6 +6,7 @@ import { useNavigate, useSearch } from '@tanstack/react-router'
 import { useGetAll } from '../../hooks/useBrandQueries'
 import BrandCard from '../ui/card'
 import Divider from '@mui/material/Divider'
+import Can from '#/components/permission/can'
 
 export default function Read() {
   const navigate = useNavigate()
@@ -20,18 +21,20 @@ export default function Read() {
           filters={[{ label: 'عنوان ویژگی', key: 'name', type: 'text' }]}
           from="/_authenticated/brands/"
         />
-        <Toolbar.actions className="flex items-center justify-end">
-          <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<AddIcon />}
-            onClick={() => {
-              navigate({ to: '/brands/create' })
-            }}
-          >
-            افزودن برند
-          </Button>
-        </Toolbar.actions>
+        <Can I="create" a="brands">
+          <Toolbar.actions className="flex items-center justify-end">
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<AddIcon />}
+              onClick={() => {
+                navigate({ to: '/brands/create' })
+              }}
+            >
+              افزودن برند
+            </Button>
+          </Toolbar.actions>
+        </Can>
       </Toolbar>
 
       <Divider />

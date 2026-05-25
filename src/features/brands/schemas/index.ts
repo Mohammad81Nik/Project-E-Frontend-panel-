@@ -22,16 +22,22 @@ const updateBrandImageSchema = z.object({
   image: z.file(),
 })
 
+const detailsParamSchema = z.object({
+  id: z.uuid(),
+})
+
 type CreateBrandDto = z.infer<typeof createBrandSchema>
 type UpdateBrandDto = z.infer<typeof updateBrandSchema>
 type UpdateBrandImageDto = z.infer<typeof updateBrandImageSchema>
 type SearchParamsDto = z.infer<typeof searchParamsSchema>
+type DetailsParamDto = z.infer<typeof detailsParamSchema>
 
 export type {
   CreateBrandDto,
   UpdateBrandDto,
   UpdateBrandImageDto,
   SearchParamsDto,
+  DetailsParamDto,
 }
 
 export {
@@ -39,4 +45,5 @@ export {
   updateBrandImageSchema,
   updateBrandSchema,
   searchParamsSchema,
+  detailsParamSchema,
 }
