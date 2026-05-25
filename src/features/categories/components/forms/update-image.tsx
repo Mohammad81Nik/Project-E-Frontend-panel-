@@ -11,6 +11,7 @@ import queryClient from '#/lib/queryClient'
 import { useQueryClient } from '@tanstack/react-query'
 import { categoryQueries } from '../../constants/categoryQueries'
 import IconButton from '@mui/material/IconButton'
+import Can from '#/components/permission/can'
 
 interface IUpdateCategoryImageProps {
   id: string
@@ -64,30 +65,32 @@ export default function UpdateCategoryImage({
         alt="category image"
         className="object-center w-full h-full"
       />
-      <Button
-        variant="contained"
-        component="label"
-        tabIndex={-1}
-        sx={{
-          position: 'absolute',
-          bottom: '8px',
-          right: '8px',
-          backgroundColor: 'white',
-        }}
-      >
-        <AddPhotoAlternateIcon
+      <Can I="update" a="categories">
+        <Button
+          variant="contained"
+          component="label"
+          tabIndex={-1}
           sx={{
-            width: '40px',
-            height: '40px',
-            color: 'black',
+            position: 'absolute',
+            bottom: '8px',
+            right: '8px',
+            backgroundColor: 'white',
           }}
-        />
-        <VisuallyHiddenInput
-          type="file"
-          sx={{ width: '100%', height: '100%' }}
-          onChange={onChange}
-        />
-      </Button>
+        >
+          <AddPhotoAlternateIcon
+            sx={{
+              width: '40px',
+              height: '40px',
+              color: 'black',
+            }}
+          />
+          <VisuallyHiddenInput
+            type="file"
+            sx={{ width: '100%', height: '100%' }}
+            onChange={onChange}
+          />
+        </Button>
+      </Can>
     </div>
   )
 }

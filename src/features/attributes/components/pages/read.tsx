@@ -8,6 +8,8 @@ import { useState } from 'react'
 import AttributeBulkActions from '../table/bulkActions'
 import { useGetAll } from '../../hooks/useAttributeQueries'
 import AddIcon from '@mui/icons-material/Add'
+import Can from '#/components/permission/can'
+import { useAbility } from '#/hooks/useAbility'
 
 export default function Read() {
   const [selected, setSelected] = useState<Set<GridRowId>>(new Set())
@@ -15,6 +17,8 @@ export default function Read() {
   const search = useSearch({ from: '/_authenticated/attributes/' })
 
   const navigate = useNavigate({ from: '/attributes/' })
+
+  const { can } = useAbility()
 
   const { data, isLoading, isRefetching } = useGetAll()
 
@@ -25,24 +29,26 @@ export default function Read() {
           filters={[{ label: 'نام ویژگی', key: 'name', type: 'text' }]}
           from="/_authenticated/attributes/"
         />
-        <Toolbar.actions className="flex items-center justify-end">
-          <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<AddIcon />}
-            onClick={() => {
-              navigate({ to: '/attributes/create' })
-            }}
-          >
-            افزودن ویژگی
-          </Button>
-        </Toolbar.actions>
+        <Can I="create" a="attributes">
+          <Toolbar.actions className="flex items-center justify-end">
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<AddIcon />}
+              onClick={() => {
+                navigate({ to: '/attributes/create' })
+              }}
+            >
+              افزودن ویژگی
+            </Button>
+          </Toolbar.actions>
+        </Can>
       </Toolbar>
 
       <DataGrid
         loading={isLoading || isRefetching}
         rows={data?.data.list ?? []}
-        columns={columns}
+        columns={columns(can('update', 'attributes'))}
         checkboxSelection
         rowSelectionModel={{
           ids: selected,

@@ -13,6 +13,7 @@ import type { Nullable } from '#/types/operators'
 import { buildCategoryTree } from '../../utils/buildCategoryTree'
 import { findCategory } from '../../utils/findCategory'
 import DeleteModal from '#/components/modals/delete-modal'
+import Can from '#/components/permission/can'
 
 export default function Read() {
   const { data } = useGetAllCategories()
@@ -54,14 +55,16 @@ export default function Read() {
         <div className="flex items-center justify-between col-span-2">
           <Typography variant="h5">دسته بندی ها</Typography>
 
-          <Button
-            onClick={onCreate}
-            variant="contained"
-            color="secondary"
-            startIcon={<AddIcon />}
-          >
-            ایجاد
-          </Button>
+          <Can I="create" a="categories">
+            <Button
+              onClick={onCreate}
+              variant="contained"
+              color="secondary"
+              startIcon={<AddIcon />}
+            >
+              ایجاد
+            </Button>
+          </Can>
         </div>
         <RichTreeView
           items={treeItems}
