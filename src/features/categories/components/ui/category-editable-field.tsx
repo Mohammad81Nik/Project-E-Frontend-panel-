@@ -8,6 +8,7 @@ import { useFormikContext } from 'formik'
 import { useCallback, useMemo, useState } from 'react'
 import Divider from '@mui/material/Divider'
 import type { UpdateCategoryDto } from '../../schemas'
+import Can from '#/components/permission/can'
 
 interface IEditableCategoryFieldProps {
   title: string
@@ -71,36 +72,38 @@ export default function EditableCatoryField({
           })}
         />
 
-        {!editing && (
-          <IconButton
-            type="button"
-            color="secondary"
-            onClick={() => setEditing(true)}
-          >
-            <EditIcon />
-          </IconButton>
-        )}
-
-        {editing && (
-          <>
-            <IconButton
-              onClick={onSubmit}
-              disabled={submitDisabled}
-              color="success"
-            >
-              <DoneIcon />
-            </IconButton>
-
+        <Can I="update" a="categories">
+          {!editing && (
             <IconButton
               type="button"
-              color="error"
-              onClick={onCancel}
-              disabled={isSubmitting}
+              color="secondary"
+              onClick={() => setEditing(true)}
             >
-              <CloseIcon />
+              <EditIcon />
             </IconButton>
-          </>
-        )}
+          )}
+
+          {editing && (
+            <>
+              <IconButton
+                onClick={onSubmit}
+                disabled={submitDisabled}
+                color="success"
+              >
+                <DoneIcon />
+              </IconButton>
+
+              <IconButton
+                type="button"
+                color="error"
+                onClick={onCancel}
+                disabled={isSubmitting}
+              >
+                <CloseIcon />
+              </IconButton>
+            </>
+          )}
+        </Can>
       </div>
     </div>
   )

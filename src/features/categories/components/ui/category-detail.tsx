@@ -13,6 +13,7 @@ import { useDelete, useUpdate } from '../../hooks/useCategoryQueries'
 import { enqueueSnackbar } from 'notistack'
 import { categoryQueries } from '../../constants/categoryQueries'
 import { useQueryClient } from '@tanstack/react-query'
+import Can from '#/components/permission/can'
 
 interface ICategoryDetailProps {
   category: Nullable<ICategory>
@@ -121,16 +122,20 @@ export default function CategoryDetail({
       </Formik>
 
       <div className="w-full grid grid-cols-2 gap-x-2">
-        <Button variant="outlined" color="error" onClick={onDelete}>
-          حذف دسته بندی
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={onCreateNewSubCategory}
-        >
-          افزودن زیر دسته بندی
-        </Button>
+        <Can I="delete" a="categories">
+          <Button variant="outlined" color="error" onClick={onDelete}>
+            حذف دسته بندی
+          </Button>
+        </Can>
+        <Can I="create" a="categories">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={onCreateNewSubCategory}
+          >
+            افزودن زیر دسته بندی
+          </Button>
+        </Can>
       </div>
     </div>
   )
