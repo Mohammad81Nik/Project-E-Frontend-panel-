@@ -7,6 +7,10 @@ export function useGetAll(search?: SearchParamsDto) {
   return useQuery(brandQueries.getAll(search))
 }
 
+export function useGetAllPageLess() {
+  return useQuery(brandQueries.getAllPageLess())
+}
+
 export function useGetOneSuspense() {
   const params = useParams({ from: '/_authenticated/brands/$brandId' })
 

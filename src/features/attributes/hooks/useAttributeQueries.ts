@@ -11,6 +11,10 @@ export function useGetOne(id: string) {
   return useQuery(attributeQueries.getOne(id))
 }
 
+export function useGetAllPageLess() {
+  return useQuery(attributeQueries.getAllPageLess())
+}
+
 export function useGetOneSuspense() {
   const params = useParams({ from: '/_authenticated/attributes/$attributeId' })
 

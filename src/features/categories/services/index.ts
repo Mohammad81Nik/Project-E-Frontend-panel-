@@ -23,6 +23,17 @@ export const categoryServices = {
     }
   },
 
+  async getAllPageLess() {
+    try {
+      const response = await axiosInstance.get<
+        IApiRepsonse<Pick<ICategory, 'id' | 'title'>[]>
+      >('/admin/categories/all')
+
+      return response.data
+    } catch (err) {
+      throw err
+    }
+  },
   async create(createCategoryDto: CreateCategoryDto) {
     try {
       const formData = new FormData()

@@ -5,6 +5,10 @@ export function useGetAllCategories() {
   return useQuery(categoryQueries.getAll())
 }
 
+export function useGetAllCategoriesPageLess() {
+  return useQuery(categoryQueries.getAllPageLess())
+}
+
 export function useCreate() {
   return useMutation(categoryQueries.create())
 }

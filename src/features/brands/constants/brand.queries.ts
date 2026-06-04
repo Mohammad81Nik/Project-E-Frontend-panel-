@@ -8,6 +8,11 @@ export const brandQueries = {
       queryKey: ['brands', 'list', searchParams],
       queryFn: () => brandServices.getAll(searchParams),
     }),
+  getAllPageLess: () =>
+    queryOptions({
+      queryKey: ['brands', 'list', 'pageless'],
+      queryFn: brandServices.getAllPageLess,
+    }),
   getOne: (id: string) =>
     queryOptions({
       queryKey: ['customer', 'detail', id],

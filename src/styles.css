@@ -13,3 +13,20 @@ body {
 * {
   font-family: 'IranYekan', 'Segoe UI', 'Roboto', sans-serif;
 }
+
+.swiper-pagination-fraction {
+  background-color: #e0e0e0;
+  width: fit-content !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  padding-inline: 8px;
+  border-radius: 4px;
+}
+
+
+.swiper-button-next {
+  color: #212121 !important
+}
+.swiper-button-prev {
+  color: #212121 !important
+}

@@ -7,7 +7,40 @@ const searchParamsSchema = z.object({
   category_id: z.uuid().optional().nullable(),
 })
 
-const createProductSchema = z.object({})
+const createProductSchema = z.object({
+  title: z.string(),
+  category_id: z.uuid(),
+  brand_id: z.uuid().optional(),
+  details: z.array(
+    z.object({
+      label: z.string(),
+      value: z.string(),
+    }),
+  ),
+  attributes: z.array(
+    z.object({
+      id: z.uuid(),
+      name: z.string(),
+      values: z.array(z.string()),
+    }),
+  ),
+  description: z.string().optional(),
+  variants: z.array(
+    z.object({
+      price: z.number().positive(),
+      stock: z.number().int().positive(),
+      attributeValues: z.record(z.string(), z.string()),
+    }),
+  ),
+  images: z.array(
+    z.object({
+      id: z.uuid(),
+      image: z.file(),
+      relatedAttributeId: z.uuid().optional(),
+      relatedAttributeValue: z.string().optional(),
+    }),
+  ),
+})
 
 const updateProductSchema = z.object({})
 

@@ -7,6 +7,11 @@ export const categoryQueries = {
       queryKey: ['category', 'list'],
       queryFn: categoryServices.getAll,
     }),
+  getAllPageLess: () =>
+    queryOptions({
+      queryKey: ['category', 'list', 'pageless'],
+      queryFn: categoryServices.getAllPageLess,
+    }),
   create: () =>
     mutationOptions({
       mutationKey: ['category', 'create'],

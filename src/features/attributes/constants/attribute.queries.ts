@@ -8,6 +8,11 @@ export const attributeQueries = {
       queryFn: () => attributeServices.getAll(searchParams),
       queryKey: ['attribute', 'list', searchParams],
     }),
+  getAllPageLess: () =>
+    queryOptions({
+      queryKey: ['attribute', 'list', 'pageless'],
+      queryFn: attributeServices.getAllPageLess,
+    }),
   getOne: (id: string) =>
     queryOptions({
       queryFn: () => attributeServices.getOne(id),

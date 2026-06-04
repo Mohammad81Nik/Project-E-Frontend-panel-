@@ -24,6 +24,17 @@ export const brandServices = {
       throw err
     }
   },
+  async getAllPageLess() {
+    try {
+      const response = await axiosInstance.get<
+        IApiRepsonse<Pick<IBrand, 'id' | 'name'>[]>
+      >('/admin/brands/pageless')
+
+      return response.data
+    } catch (err) {
+      throw err
+    }
+  },
   async getOne(id: string) {
     try {
       const response = await axiosInstance.get<IApiRepsonse<IBrand>>(

@@ -25,6 +25,20 @@ export const attributeServices = {
       throw error
     }
   },
+
+  async getAllPageLess() {
+    try {
+      const response = await axiosInstance.get<
+        IApiRepsonse<Pick<IAttribute, 'id' | 'name'>[]>
+      >('/attributes/pageless')
+
+      return response.data
+    } catch (err) {
+      const error = err as AxiosError
+
+      throw error
+    }
+  },
   async getOne(id: string) {
     try {
       const response = await axiosInstance.get<IApiRepsonse<IAttribute>>(
